@@ -16,7 +16,7 @@ public class StartUI {
                 Item item = new Item(name);
                 tracker.add(item);
                 System.out.println("A new item was created:");
-                showItem(item);
+                System.out.println(item);
             } else if (select == 1) {
                 System.out.println("=== List of all items ====");
                 Item[] items = tracker.findAll();
@@ -30,7 +30,7 @@ public class StartUI {
                 Item item = new Item(name);
                 if (tracker.replace(id, item)) {
                     System.out.println("An item edited successfully:");
-                    showItem(item);
+                    System.out.println(item);
                 } else {
                     System.out.println("An item editing was failed.");
                 }
@@ -49,7 +49,7 @@ public class StartUI {
                 String id = scanner.nextLine();
                 Item item = tracker.findById(id);
                 if (item != null) {
-                    showItem(item);
+                    System.out.println(item);
                 } else {
                     System.out.println("No item was founded.");
                 }
@@ -76,13 +76,9 @@ public class StartUI {
         System.out.println("6. Exit Program");
     }
 
-    private void showItem(Item item) {
-        System.out.println(item.getId() + " " + item.getName());
-    }
-
     private void showItems(Item[] items) {
-        for (int i = 0; i < items.length; i++) {
-            System.out.println(items[i].getId() + " " + items[i].getName());
+        for (Item item : items) {
+            System.out.println(item);
         }
     }
 
