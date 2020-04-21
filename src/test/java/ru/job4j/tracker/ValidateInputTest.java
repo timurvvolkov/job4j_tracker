@@ -21,4 +21,19 @@ public class ValidateInputTest {
         );
         System.setOut(out);
     }
+
+    @Test
+    public void whenInvalidKey() {
+        ByteArrayOutputStream mem = new ByteArrayOutputStream();
+        PrintStream out = System.out;
+        System.setOut(new PrintStream(mem));
+        String[] data = {"8", "1"};
+        ValidateInput input = new ValidateStubInput(data);
+        input.askInt("Enter", 7);
+        assertThat(
+                mem,
+                is(String.format("Please select key from menu.%n"))
+        );
+        System.setOut(out);
+    }
 }
