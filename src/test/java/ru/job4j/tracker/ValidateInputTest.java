@@ -12,11 +12,12 @@ public class ValidateInputTest {
         ByteArrayOutputStream mem = new ByteArrayOutputStream();
         PrintStream out = System.out;
         System.setOut(new PrintStream(mem));
-        String[] data = {"one", "1"};
-        ValidateInput input = new ValidateStubInput(data);
+        ValidateInput input = new ValidateInput(
+                new StubInput(new String[] {"one", "1"})
+        );
         input.askInt("Enter");
         assertThat(
-                mem,
+                mem.toString(),
                 is(String.format("Please enter validate data again.%n"))
         );
         System.setOut(out);
@@ -27,11 +28,12 @@ public class ValidateInputTest {
         ByteArrayOutputStream mem = new ByteArrayOutputStream();
         PrintStream out = System.out;
         System.setOut(new PrintStream(mem));
-        String[] data = {"8", "1"};
-        ValidateInput input = new ValidateStubInput(data);
+        ValidateInput input = new ValidateInput(
+                new StubInput(new String[] {"8", "1"})
+        );
         input.askInt("Enter", 7);
         assertThat(
-                mem,
+                mem.toString(),
                 is(String.format("Please select key from menu.%n"))
         );
         System.setOut(out);
