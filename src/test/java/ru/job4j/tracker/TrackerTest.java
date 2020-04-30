@@ -1,6 +1,10 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.IsNull.nullValue;
@@ -23,13 +27,18 @@ public class TrackerTest {
         Item item3 = new Item("test3");
         Item item4 = new Item("test4");
         Item item5 = new Item("test5");
-        Item[] items = {item1, item2, item3, item4, item5};
+        List<Item> items = new ArrayList<>();
+        items.add(item1);
+        items.add(item2);
+        items.add(item3);
+        items.add(item4);
+        items.add(item5);
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
         tracker.add(item4);
         tracker.add(item5);
-        Item[] result = tracker.findAll();
+        List<Item> result = tracker.findAll();
         assertThat(result, is(items));
     }
 
@@ -41,13 +50,16 @@ public class TrackerTest {
         Item item3 = new Item("test1");
         Item item4 = new Item("test3");
         Item item5 = new Item("test1");
-        Item[] items = {item1, item3, item5};
+        List<Item> items = new ArrayList<>();
+        items.add(item1);
+        items.add(item3);
+        items.add(item5);
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
         tracker.add(item4);
         tracker.add(item5);
-        Item[] result = tracker.findByName("test1");
+        List<Item> result = tracker.findByName("test1");
         assertThat(result, is(items));
     }
 
